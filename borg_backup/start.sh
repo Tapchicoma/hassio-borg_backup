@@ -20,8 +20,9 @@ if [ ! -f /data/known_hosts ]; then
      || bashio::exit.nok "Could not acquire host key from backup server."
 fi
 
-bashio::log.info 'Trying to initialize the Borg repository.'
-/usr/bin/borg init -e "$(bashio::config 'encryption')" || true
+encryption_type=bashio::config 'encryption'
+bashio::log.info "Trying to initialize the Borg repository with $encryption_type encryption type."
+/usr/bin/borg init -e "$encryption_type" || true
 /usr/bin/borg info || bashio::exit.nok "Borg repository is not readable."
 
 if [ "$(date +%u)" = 7 ]; then
