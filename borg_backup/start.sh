@@ -1,4 +1,8 @@
 #!/usr/bin/env bashio
+
+# Enable to see trace logs
+bashio::log.level "all"
+
 export BORG_REPO="ssh://$(bashio::config 'user')@$(bashio::config 'host'):$(bashio::config 'port')/$(bashio::config 'path')"
 export BORG_PASSPHRASE="$(bashio::config 'passphrase')"
 export BORG_BASE_DIR="/data"
@@ -20,7 +24,7 @@ if [ ! -f /data/known_hosts ]; then
      || bashio::exit.nok "Could not acquire host key from backup server."
 fi
 
-encryption_type=bashio::config 'encryption'
+encryption_type=$(bashio::config 'encryption')
 bashio::log.info "Trying to initialize the Borg repository with $encryption_type encryption type."
 /usr/bin/borg init -e "$encryption_type" || true
 /usr/bin/borg info || bashio::exit.nok "Borg repository is not readable."

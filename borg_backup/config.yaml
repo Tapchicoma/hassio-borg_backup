@@ -1,19 +1,19 @@
-name: "BorgBackup"
-description: "BorgBackup is a Hass Add-On - Fork by Tapchicoma, based on 3v1n0, yeah and frigi83"
-version: "0.70.2"
+name: "Borg Backup"
+description: "Borg Backup is a Hass Add-On - Fork by Tapchicoma, based on 3v1n0, yeah and frigi83"
+version: "0.70.18"
 slug: "borg_backup"
 url: "https://github.com/Tapchicoma/hassio-borg_backup"
 startup: once
 init: false
+boot: manual
 arch:
   - armhf
   - armv7
   - aarch64
   - amd64
   - i386
-boot: manual
-host_network: false
-hassio_role: "backup"
+hassio_api: true
+hassio_role: backup
 map:
   - backup:rw
 options:
