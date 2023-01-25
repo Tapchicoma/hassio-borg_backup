@@ -1,7 +1,7 @@
-#!/usr/bin/env bashio
+#!/usr/bin/with-contenv bashio
 
 # Enable to see trace logs
-bashio::log.level "all"
+#bashio::log.level "all"
 
 export BORG_REPO="ssh://$(bashio::config 'user')@$(bashio::config 'host'):$(bashio::config 'port')/$(bashio::config 'path')"
 export BORG_PASSPHRASE="$(bashio::config 'passphrase')"
@@ -40,7 +40,7 @@ for i in /backup/*.tar; do
   bashio::log.info "Backing up $backup_info"
 done
 
-if [ "$(bashio::config 'deduplicate_archives')" ]; then
+if [ "$(bashio::config.true 'deduplicate_archives')" ]; then
   for i in /backup/*.tar; do
     archive_name=$(tar xf "$i" ./backup.json -O | jq -r '[.name, .date] | join("-")' || true)
 
