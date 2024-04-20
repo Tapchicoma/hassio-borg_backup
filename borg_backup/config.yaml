@@ -1,6 +1,6 @@
 name: "Borg Backup"
 description: "Borg Backup is a Hass Add-On - Fork by Tapchicoma, based on 3v1n0, yeah and frigi83"
-version: "0.70.2"
+version: "0.71.0"
 slug: "borg_backup"
 url: "https://github.com/Tapchicoma/hassio-borg_backup"
 startup: once
